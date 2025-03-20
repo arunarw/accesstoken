@@ -12,12 +12,14 @@ class MemberController extends Controller
         return view('members', ['members' => Member::query()->get()]);
     }
 
-    public function saveMember(Request $request)
+    public function saveMember(Request $request, SaveMemberAction $action)
     {
-        Member::query()->create([
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|unique:members,email'
         ]);
+
+        $action->execute($request->get('name'), $request->get('email'));
 
         return redirect()->back();
     }

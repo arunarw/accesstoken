@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\Session; @endphp
 <h1>Members</h1>
 <a href="/">Home</a>
 <a href="/about">About</a>
@@ -15,6 +16,13 @@
     <br/>
     <button type="submit">Save</button>
 </form>
+
+@if(Session::has('errors'))
+    @foreach(Session::get('errors')->all() as $error)
+        <span style="color: red">{{ $error }}</span>
+        <br />
+    @endforeach
+@endif
 
 <table width="50%" border="1px solid black">
     <tr>
