@@ -6,11 +6,11 @@ use App\Models\Member;
 
 class SaveMemberAction
 {
-    public function execute(string $name, string $email)
+    public function execute(SaveMemberCommand $command)
     {
         Member::query()->create([
-            'name' => $name,
-            'email' => $email,
+            'name' => $command->fullName,
+            'email' => $command->email,
         ]);
     }
 }

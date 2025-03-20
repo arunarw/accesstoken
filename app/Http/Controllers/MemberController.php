@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
-use Illuminate\Http\Request;
 
 class MemberController extends Controller
 {
@@ -12,14 +11,9 @@ class MemberController extends Controller
         return view('members', ['members' => Member::query()->get()]);
     }
 
-    public function saveMember(Request $request, SaveMemberAction $action)
+    public function saveMember(SaveMemberCommand $command, SaveMemberAction $action)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required|unique:members,email'
-        ]);
-
-        $action->execute($request->get('name'), $request->get('email'));
+        $action->execute($command);
 
         return redirect()->back();
     }
