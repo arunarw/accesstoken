@@ -17,4 +17,11 @@ class MemberController extends Controller
 
         return redirect()->back();
     }
+
+    public function deleteMember(Member $member, DeleteMemberAction $deleteMemberAction)
+    {
+        $deleteMemberAction->execute($member);
+
+        return redirect()->back();
+    }
 }

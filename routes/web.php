@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Member;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 
@@ -13,5 +12,5 @@ Route::get('/about', function () {
 });
 
 Route::get('/members', [MemberController::class, 'show']);
-
 Route::post('/save-member', [MemberController::class, 'saveMember']);
+Route::get('/delete-member/{member}', [MemberController::class, 'deleteMember']);

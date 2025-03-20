@@ -29,12 +29,14 @@
         <th>ID</th>
         <th>Name</th>
         <th>Email</th>
+        <th>Action</th>
     </tr>
-    @foreach($members as $member)
+    @foreach($members as $key=>$member)
         <tr>
-            <td>{{$member->getKey()}}</td>
+            <td>{{$key+1}}</td>
             <td>{{$member->name}}</td>
             <td>{{$member->email}}</td>
+            <td><a href="delete-member/{{$member->getKey()}}">delete</td>
         </tr>
     @endforeach
 </table>
